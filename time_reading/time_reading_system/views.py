@@ -55,7 +55,7 @@ class ReadingSessionList(generics.ListCreateAPIView):
             return Response({'detail': 'Завершіть поточну сесію читання перед початком нової.'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        """ Завершення попередніх сесій читання, якщо вони існують """
+        """ Завершення попередньої сесії читання, якщо вона існує """
         previous_session = SessionReading.objects.filter(user=user, end_reading__isnull=True).first()
         if previous_session:
             time = datetime.time(date.now().hour, date.now().minute, date.now().second)
